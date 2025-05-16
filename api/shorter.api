@@ -1,0 +1,20 @@
+type reqUrl {
+	Url string `json:"url"`
+}
+
+type respShortUrl {
+	ShortUrl string `json:"shortened"`
+}
+
+type reqShortUrlId {
+	Id string `path:"id"`
+}
+
+service shorter-api {
+	@handler short
+	post /short (reqUrl) returns (respShortUrl)
+
+	@handler getShortUrl
+	get /shortUrl/:id (reqShortUrlId) returns (respShortUrl)
+}
+
