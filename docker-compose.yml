@@ -1,0 +1,17 @@
+version: '3.0'
+
+services:
+    shorter-mysql:
+        image: mysql
+        container_name: shorter-mysql
+        ports:
+          - "3306:3306"
+        volumes:
+            - ./internal/model/shorter.sql:/docker-entrypoint-initdb.d/shorter.sql
+        environment:
+            MYSQL_ROOT_PASSWORD: 123456
+    shorter-redis:
+        image: redis
+        container_name: shorter-redis
+        ports:
+          - "6379:6379"

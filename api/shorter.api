@@ -1,3 +1,5 @@
+import "healthz.api"
+
 type reqUrl {
 	Url string `json:"url"`
 }
@@ -6,15 +8,19 @@ type respShortUrl {
 	ShortUrl string `json:"shortened"`
 }
 
-type reqShortUrlId {
-	Id string `path:"id"`
+type reqShortCode {
+	ShortCode string `path:"shortcode"`
+}
+
+type respRedirect {
+	Url string `json:"url"`
 }
 
 service shorter-api {
 	@handler short
-	post /short (reqUrl) returns (respShortUrl)
+	post /api/short (reqUrl) returns (respShortUrl)
 
-	@handler getShortUrl
-	get /shortUrl/:id (reqShortUrlId) returns (respShortUrl)
+	@handler redirect
+	get /s/:shortcode (reqShortCode) returns (respRedirect)
 }
 

@@ -16,13 +16,23 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 		[]rest.Route{
 			{
 				Method:  http.MethodPost,
-				Path:    "/short",
+				Path:    "/api/short",
 				Handler: shortHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodGet,
-				Path:    "/shortUrl/:id",
-				Handler: getShortUrlHandler(serverCtx),
+				Path:    "/s/:shortcode",
+				Handler: redirectHandler(serverCtx),
+			},
+		},
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodGet,
+				Path:    "/healthz",
+				Handler: healthzHandler(serverCtx),
 			},
 		},
 	)

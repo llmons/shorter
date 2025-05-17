@@ -3,11 +3,15 @@
 
 package types
 
-type ReqShortUrlId struct {
-	Id string `path:"id"`
+type ReqShortCode struct {
+	ShortCode string `path:"shortcode"`
 }
 
 type ReqUrl struct {
+	Url string `json:"url"`
+}
+
+type RespRedirect struct {
 	Url string `json:"url"`
 }
 
